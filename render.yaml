@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: translate-django
+    env: python
+    rootDir: translator
+    buildCommand: bash build.sh
+    startCommand: gunicorn translator.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.5
+      - key: DEBUG
+        value: false
+      - key: ALLOWED_HOSTS
+        value: .onrender.com
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: translate-db
+          property: connectionString
+
+databases:
+  - name: translate-db
