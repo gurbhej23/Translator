@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'stylemain/style.css' %}">
+    <title>Translator</title>
+</head>
+
+<body>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="translate" value="{{ text }}" required id="search-input">
+            <select required name="language">
+                {% for code, label in languages.items %}
+                <option value="{{ code }}" {% if selected_language == code %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <button type="submit" id="search-button">Translate</button>
+        </form>
+    </div>
+
+    {% if translation %}
+    <h3>Translation</h3>
+    <p>{{ translation }}</p>
+    {% endif %}
+
+    {% if error %}
+    <h3>Error</h3>
+    <p>{{ error }}</p>
+    {% endif %}
+</body>
+
+</html>
