@@ -11,6 +11,7 @@
 
 <body>
     <div class="container">
+            <h1>Translate</h1>
         <form method="post" id="translate-form">
             {% csrf_token %}
             <input type="text" name="translate" value="{{ text }}" required id="search-input">
@@ -19,8 +20,7 @@
                 <option value="{{ code }}" {% if selected_language == code %}selected{% endif %}>{{ label }}</option>
                 {% endfor %}
             </select>
-            <br>
-            <button type="submit" id="search-button">Translate</button>
+            <br> 
         </form>
     </div>
     <div class="main-center" id="result-panel">
