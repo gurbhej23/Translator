@@ -11,10 +11,10 @@
 
 <body>
     <div class="container">
-        <form method="post">
+        <form method="post" id="translate-form">
             {% csrf_token %}
             <input type="text" name="translate" value="{{ text }}" required id="search-input">
-            <select required name="language">
+            <select required name="language" id="language-select">
                 {% for code, label in languages.items %}
                 <option value="{{ code }}" {% if selected_language == code %}selected{% endif %}>{{ label }}</option>
                 {% endfor %}
@@ -23,16 +23,19 @@
             <button type="submit" id="search-button">Translate</button>
         </form>
     </div>
+    <div class="main-center" id="result-panel">
+        <p id="status-message" class="status-message"></p>
+        <div id="translation-block" {% if not translation %}hidden{% endif %}>
+            <h3>Translation</h3>
+            <p id="translation-text">{{ translation }}</p>
+        </div>
 
-    {% if translation %}
-    <h3>Translation</h3>
-    <p>{{ translation }}</p>
-    {% endif %}
-
-    {% if error %}
-    <h3>Error</h3>
-    <p>{{ error }}</p>
-    {% endif %}
+        <div id="error-block" {% if not error %}hidden{% endif %}>
+            <h3>Error</h3>
+            <p id="error-text">{{ error }}</p>
+        </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>

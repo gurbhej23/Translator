@@ -42,3 +42,28 @@ form {
   border: none;
   cursor: pointer;
 }
+
+.main-center {
+  width: 700px;
+  margin: 0 auto 40px;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.status-message {
+  min-height: 24px;
+  color: #0077cc;
+  font-weight: 600;
+}
+
+#translation-text,
+#error-text {
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+#error-text {
+  color: #b42318;
+}
